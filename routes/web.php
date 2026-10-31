@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Livewire\Stock\StockMovements;
 use App\Livewire\Products\ProductIndex;
 use App\Livewire\Products\ProductForm;
 
@@ -30,6 +31,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/customers', CustomerIndex::class)->name('customers.index');
     Route::get('/customers/create', CustomerForm::class)->name('customers.create');
     Route::get('/customers/{customer}/edit', CustomerForm::class)->name('customers.edit');
+    Route::get('/stock', StockMovements::class)->name('stock.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

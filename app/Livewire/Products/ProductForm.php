@@ -20,7 +20,6 @@ class ProductForm extends Component
     public string $name = '';
     public string $price = '';
     public string $cost = '0';
-    public int $stock = 0;
     public int $min_stock = 0;
     public bool $active = true;
 
@@ -30,7 +29,9 @@ class ProductForm extends Component
             $this->authorize('update', $product);
             $this->product = $product;
             $this->fill($product->only(
-                'category_id', 'sku', 'name', 'price', 'cost', 'stock', 'min_stock', 'active'
+                'category_id', 'sku', 'name',
+                 'price', 'cost',
+                  'min_stock', 'active'
             ));
         } else {
             $this->authorize('create', Product::class);
@@ -45,7 +46,6 @@ class ProductForm extends Component
             'name' => ['required', 'string', 'max:255'],
             'price' => ['required', 'numeric', 'min:0'],
             'cost' => ['required', 'numeric', 'min:0'],
-            'stock' => ['required', 'integer', 'min:0'],
             'min_stock' => ['required', 'integer', 'min:0'],
             'active' => ['boolean'],
         ];

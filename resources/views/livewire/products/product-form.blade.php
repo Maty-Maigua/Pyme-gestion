@@ -41,18 +41,19 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <label class="block text-sm font-medium">Stock</label>
-                <input type="number" wire:model="stock" class="w-full border rounded px-3 py-2">
-                @error('stock') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
-            </div>
-            <div>
-                <label class="block text-sm font-medium">Stock mínimo</label>
-                <input type="number" wire:model="min_stock" class="w-full border rounded px-3 py-2">
-                @error('min_stock') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
-            </div>
+        <div>
+            <label class="block text-sm font-medium">Stock mínimo</label>
+            <input type="number" wire:model="min_stock" class="w-full border rounded px-3 py-2">
+            @error('min_stock') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
         </div>
+
+        @if ($product)
+            <p class="text-sm text-gray-600">
+                Stock actual: <strong>{{ $product->stock }}</strong>
+                (se modifica desde
+                <a href="{{ route('stock.index') }}" wire:navigate class="text-indigo-600">Movimientos de stock</a>)
+            </p>
+        @endif
 
         <label class="flex items-center gap-2">
             <input type="checkbox" wire:model="active"> Activo
